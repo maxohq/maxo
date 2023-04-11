@@ -1,12 +1,12 @@
-defmodule LibName.MixProject do
+defmodule <%= @app_module %>.MixProject do
   use Mix.Project
-  @github_url "https://github.com/maxohq/lib_name"
+  @github_url "https://github.com/maxohq/<%= @app_name %>"
   @version "0.1.0"
-  @description "LibName description"
+  @description "<%= @app_module %> description"
 
   def project do
     [
-      app: :lib_name,
+      app: :<%= @app_name %>,
       source_url: @github_url,
       version: @version,
       description: @description,
@@ -23,7 +23,7 @@ defmodule LibName.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {LibName.Application, []}
+      mod: {<%= @app_module %>.Application, []}
     ]
   end
 

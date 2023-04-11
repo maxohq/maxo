@@ -1,10 +1,10 @@
-# LibName
+# <%= @app_module %>
 
-[![Hex.pm](https://img.shields.io/hexpm/v/lib_name.svg)](https://hex.pm/packages/lib_name)
-[![Docs](https://img.shields.io/badge/hexdocs-docs-8e7ce6.svg)](https://hexdocs.pm/lib_name)
-[![CI](https://github.com/maxohq/lib_name/actions/workflows/ci.yml/badge.svg)](https://github.com/maxohq/lib_name/actions/workflows/ci.yml)
+[![Hex.pm](https://img.shields.io/hexpm/v/<%= @app_name %>.svg)](https://hex.pm/packages/<%= @app_name %>)
+[![Docs](https://img.shields.io/badge/hexdocs-docs-8e7ce6.svg)](https://hexdocs.pm/<%= @app_name %>)
+[![CI](https://github.com/maxohq/<%= @app_name %>/actions/workflows/ci.yml/badge.svg)](https://github.com/maxohq/<%= @app_name %>/actions/workflows/ci.yml)
 
-`LibName` is ...
+`<%= @app_module %>` is ...
 
 ## Usage
 
@@ -14,14 +14,14 @@ IO.puts "hello"
 
 ## Installation
 
-The package can be installed by adding `lib_name` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `<%= @app_name %>` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:lib_name, "~> 0.1"}
+    {:<%= @app_name %>, "~> 0.1"}
   ]
 end
 ```
 
-The docs can be found at <https://hexdocs.pm/lib_name>.
+The docs can be found at <https://hexdocs.pm/<%= @app_name %>>.

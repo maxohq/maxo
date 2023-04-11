@@ -15,12 +15,12 @@ Set Theme "Builtin Solarized Light"
 # Setup
 
 Show
-Type "# LibName is an Elixir package that helps you!)" Sleep 2 Enter Sleep 0.5
+Type "# <%= @app_module %> is an Elixir package that helps you!)" Sleep 2 Enter Sleep 0.5
 Type "# Let's see it in action!" Sleep 2 Enter Sleep 0.5
 
 Hide
 Type "iex -S mix" Enter
-Type 'File.rm_rf("/tmp/lib_name")' Enter
+Type 'File.rm_rf("/tmp/<%= @app_name %>")' Enter
 Type "clear" Enter
 
 Show
