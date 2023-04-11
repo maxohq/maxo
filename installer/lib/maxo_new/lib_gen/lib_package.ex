@@ -40,10 +40,21 @@ defmodule MaxoNew.LibGen.LibPackage do
     }
   ])
 
+  template(:bin, [
+    {
+      :eex,
+      :project,
+      "lib_normal/bin/test": "bin/test",
+      "lib_normal/bin/test_iex": "bin/test_iex",
+      "lib_normal/bin/setup": "bin/setup"
+    }
+  ])
+
   def generate(%LibDesc{} = project) do
     copy_from(project, __MODULE__, :new)
     copy_from(project, __MODULE__, :github)
     copy_from(project, __MODULE__, :example)
+    copy_from(project, __MODULE__, :bin)
     project
   end
 
