@@ -1,12 +1,12 @@
-defmodule MaxoNew.LibPackageTest do
+defmodule MaxoNew.LibGen.LibPackageTest do
   use ExUnit.Case
   use MnemeDefaults
-  alias MaxoNew.Project
-  alias MaxoNew.LibPackage
+  alias MaxoNew.LibGen.LibDesc
+  alias MaxoNew.LibGen.LibPackage
   alias MaxoNew.Virtfs
 
   test "works ok" do
-    p = MaxoNew.Project.new("maxo_gen", [])
+    p = LibDesc.new("maxo_gen", [])
     p |> LibPackage.prepare_project() |> LibPackage.generate()
 
     auto_assert(
@@ -25,6 +25,7 @@ defmodule MaxoNew.LibPackageTest do
         "/maxo_gen/lib/maxo_gen",
         "/maxo_gen/lib/maxo_gen.ex",
         "/maxo_gen/lib/maxo_gen/application.ex",
+        "/maxo_gen/lib/maxo_gen_test.exs",
         "/maxo_gen/lib/test_helper.exs",
         "/maxo_gen/mix.exs",
         "/maxo_gen/test",
@@ -122,6 +123,19 @@ defmodule MaxoNew.LibPackageTest do
               ]}
          ]
        ]} <- Code.string_to_quoted!(Virtfs.read!(p.fs, "/maxo_gen/mix.exs"))
+    )
+
+    auto_assert(
+      """
+      defmodule MaxoGenTest do
+        use ExUnit.Case
+        use MnemeDefaults
+
+        test "greeting" do
+          auto_assert(MaxoGen.greeting())
+        end
+      end
+      """ <- Virtfs.read!(p.fs, "/maxo_gen/lib/maxo_gen_test.exs")
     )
   end
 end
