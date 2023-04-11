@@ -18,13 +18,32 @@ defmodule MaxoNew.LibGen.LibPackage do
       "lib_normal/Makefile": "Makefile",
       "lib_normal/formatter.exs": ".formatter.exs",
       "lib_normal/gitignore": ".gitignore",
-      "lib_normal/github/workflows/ci.yml": ".github/workflows/ci.yml",
       "lib_normal/test/test_helper.exs": "test/test_helper.exs"
+    }
+  ])
+
+  template(:example, [
+    {
+      :eex,
+      :project,
+      "lib_normal/examples/example.exs": "examples/example.exs",
+      "lib_normal/examples/example.tape": "examples/example.tape",
+      "lib_normal/examples/gen_tape.exs": "examples/gen_tape.exs"
+    }
+  ])
+
+  template(:github, [
+    {
+      :eex,
+      :project,
+      "lib_normal/github/workflows/ci.yml": ".github/workflows/ci.yml"
     }
   ])
 
   def generate(%LibDesc{} = project) do
     copy_from(project, __MODULE__, :new)
+    copy_from(project, __MODULE__, :github)
+    copy_from(project, __MODULE__, :example)
     project
   end
 
