@@ -26,16 +26,15 @@ defmodule MaxoNew.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :eex, :crypto],
-      mod: {MaxoNew.Application, []}
+      extra_applications: [:logger, :eex, :crypto]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:test_iex, github: "mindreframer/test_iex", only: [:test]},
-      {:mneme, "~> 0.3.0-rc.1", only: [:test]}
+      {:maxo_test_iex, "~> 0.1", only: [:test]},
+      {:mneme, "~> 0.3", only: [:test]}
     ]
   end
 end
