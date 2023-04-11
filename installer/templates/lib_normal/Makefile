@@ -1,6 +1,3 @@
-test:
-	mix test
-
 release:
 	mix hex.publish
 

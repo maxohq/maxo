@@ -1,3 +1,3 @@
-# Start a the package up
-
+# Show what your package is capable of!
+<%= @app_module %>.greeting()
 # Enjoy using it! 💜
