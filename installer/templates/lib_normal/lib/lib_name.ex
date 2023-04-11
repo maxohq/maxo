@@ -1,0 +1,2 @@
+defmodule LibName do
+end
