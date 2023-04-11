@@ -18,7 +18,8 @@ defmodule MaxoNew.LibGen.LibPackage do
       "lib_normal/Makefile": "Makefile",
       "lib_normal/formatter.exs": ".formatter.exs",
       "lib_normal/gitignore": ".gitignore",
-      "lib_normal/test/test_helper.exs": "test/test_helper.exs"
+      "lib_normal/test/test_helper.exs": "test/test_helper.exs",
+      "lib_normal/test/support/mneme_defaults.ex": "test/support/mneme_defaults.ex"
     }
   ])
 

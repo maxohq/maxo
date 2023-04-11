@@ -11,6 +11,7 @@ defmodule <%= @app_module %>.MixProject do
       version: @version,
       description: @description,
       elixir: "~> 1.14",
+      elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test", "lib"],
       test_pattern: "*_test.exs",
       start_permanent: Mix.env() == :prod,
@@ -26,6 +27,9 @@ defmodule <%= @app_module %>.MixProject do
       mod: {<%= @app_module %>.Application, []}
     ]
   end
+
+  def elixirc_paths(:test), do: ["lib", "test/support"]
+  def elixirc_paths(_), do: ["lib"]
 
   defp package do
     [

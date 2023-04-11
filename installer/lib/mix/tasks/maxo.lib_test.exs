@@ -56,6 +56,8 @@ defmodule Mix.Tasks.Maxo.LibTest do
             "/my_app/lib/test_helper.exs",
             "/my_app/mix.exs",
             "/my_app/test",
+            "/my_app/test/support",
+            "/my_app/test/support/mneme_defaults.ex",
             "/my_app/test/test_helper.exs"
           ] <- Virtfs.tree!(res.fs, "/")
         )

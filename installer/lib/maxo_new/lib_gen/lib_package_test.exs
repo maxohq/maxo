@@ -37,100 +37,71 @@ defmodule MaxoNew.LibGen.LibPackageTest do
         "/maxo_gen/lib/test_helper.exs",
         "/maxo_gen/mix.exs",
         "/maxo_gen/test",
+        "/maxo_gen/test/support",
+        "/maxo_gen/test/support/mneme_defaults.ex",
         "/maxo_gen/test/test_helper.exs"
       ] <- Virtfs.tree!(p.fs, "/maxo_gen")
     )
 
     auto_assert(
       ## simple text contains interpolation, this breaks assertions
-      {:defmodule, [line: 1],
-       [
-         {:__aliases__, [line: 1], [:MaxoGen, :MixProject]},
-         [
-           do:
-             {:__block__, [],
-              [
-                {:use, [line: 2], [{:__aliases__, [line: 2], [:Mix, :Project]}]},
-                {:@, [line: 3],
-                 [{:github_url, [line: 3], ["https://github.com/maxohq/maxo_gen"]}]},
-                {:@, [line: 4], [{:version, [line: 4], ["0.1.0"]}]},
-                {:@, [line: 5], [{:description, [line: 5], ["MaxoGen description"]}]},
-                {:def, [line: 7],
-                 [
-                   {:project, [line: 7], nil},
-                   [
-                     do: [
-                       app: :maxo_gen,
-                       source_url: {:@, [line: 10], [{:github_url, [line: 10], nil}]},
-                       version: {:@, [line: 11], [{:version, [line: 11], nil}]},
-                       description: {:@, [line: 12], [{:description, [line: 12], nil}]},
-                       elixir: "~> 1.14",
-                       test_paths: ["test", "lib"],
-                       test_pattern: "*_test.exs",
-                       start_permanent:
-                         {:==, [line: 16],
-                          [
-                            {{:., [line: 16], [{:__aliases__, [line: 16], [:Mix]}, :env]},
-                             [line: 16], []},
-                            :prod
-                          ]},
-                       deps: {:deps, [line: 17], []},
-                       package: {:package, [line: 18], []}
-                     ]
-                   ]
-                 ]},
-                {:def, [line: 23],
-                 [
-                   {:application, [line: 23], nil},
-                   [
-                     do: [
-                       extra_applications: [:logger],
-                       mod: {{:__aliases__, [line: 26], [:MaxoGen, :Application]}, []}
-                     ]
-                   ]
-                 ]},
-                {:defp, [line: 30],
-                 [
-                   {:package, [line: 30], nil},
-                   [
-                     do: [
-                       files:
-                         {:sigil_w, [delimiter: "(", line: 32],
-                          [{:<<>>, [line: 32], ["lib mix.exs README* CHANGELOG*"]}, []]},
-                       licenses: ["MIT"],
-                       links:
-                         {:%{}, [line: 34],
-                          [
-                            {"Github", {:@, [line: 35], [{:github_url, [line: 35], nil}]}},
-                            {"Changelog",
-                             {:<<>>, [line: 36],
-                              [
-                                {:"::", [line: 36],
-                                 [
-                                   {{:., [line: 36], [Kernel, :to_string]}, [line: 36],
-                                    [{:@, [line: 36], [{:github_url, [line: 36], nil}]}]},
-                                   {:binary, [line: 36], nil}
-                                 ]},
-                                "/blob/main/CHANGELOG.md"
-                              ]}}
-                          ]}
-                     ]
-                   ]
-                 ]},
-                {:defp, [line: 42],
-                 [
-                   {:deps, [line: 42], nil},
-                   [
-                     do: [
-                       {:{}, [line: 44], [:ex_doc, "~> 0.29", [only: :dev, runtime: false]]},
-                       {:{}, [line: 45], [:maxo_test_iex, "~> 0.1", [only: [:test]]]},
-                       {:{}, [line: 46], [:mneme, "~> 0.3", [only: [:test]]]}
-                     ]
-                   ]
-                 ]}
-              ]}
-         ]
-       ]} <- Code.string_to_quoted!(Virtfs.read!(p.fs, "/maxo_gen/mix.exs"))
+      """
+      defmodule MaxoGen.MixProject do
+        use Mix.Project
+        @github_url "https://github.com/maxohq/maxo_gen"
+        @version "0.1.0"
+        @description "MaxoGen description"
+
+        def project do
+          [
+            app: :maxo_gen,
+            source_url: @github_url,
+            version: @version,
+            description: @description,
+            elixir: "~> 1.14",
+            elixirc_paths: elixirc_paths(Mix.env()),
+            test_paths: ["test", "lib"],
+            test_pattern: "*_test.exs",
+            start_permanent: Mix.env() == :prod,
+            deps: deps(),
+            package: package()
+          ]
+        end
+
+        # Run "mix help compile.app" to learn about applications.
+        def application do
+          [
+            extra_applications: [:logger],
+            mod: {MaxoGen.Application, []}
+          ]
+        end
+
+        def elixirc_paths(:test), do: ["lib", "test/support"]
+        def elixirc_paths(_), do: ["lib"]
+
+        defp package do
+          [
+            files: ~w(lib mix.exs README* CHANGELOG*),
+            licenses: ["MIT"],
+            links: %{
+              "Github" => @github_url,
+              "Changelog" => "github_url/blob/main/CHANGELOG.md"
+            }
+          ]
+        end
+
+        # Run "mix help deps" to learn about dependencies.
+        defp deps do
+          [
+            {:ex_doc, "~> 0.29", only: :dev, runtime: false},
+            {:maxo_test_iex, "~> 0.1", only: [:test]},
+            {:mneme, "~> 0.3", only: [:test]}
+          ]
+        end
+      end
+      """ <-
+        Virtfs.read!(p.fs, "/maxo_gen/mix.exs")
+        |> String.replace(~S|#{@github_url}|, "github_url")
     )
 
     auto_assert(
