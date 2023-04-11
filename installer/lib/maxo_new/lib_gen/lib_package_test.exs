@@ -137,5 +137,15 @@ defmodule MaxoNew.LibGen.LibPackageTest do
       end
       """ <- Virtfs.read!(p.fs, "/maxo_gen/lib/maxo_gen_test.exs")
     )
+
+    auto_assert(
+      """
+      ## v0.1.0 (2023-04-11)
+
+      ### First release
+
+      - Published on hex.pm
+      """ <- Virtfs.read!(p.fs, "/maxo_gen/CHANGELOG.md")
+    )
   end
 end

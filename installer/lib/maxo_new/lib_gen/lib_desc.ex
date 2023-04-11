@@ -33,7 +33,7 @@ defmodule MaxoNew.LibGen.LibDesc do
   end
 
   def join_path(%LibDesc{} = lib_desc, location, path)
-      when location in [:project, :app, :web] do
+      when location in [:project, :app] do
     lib_desc
     |> Map.fetch!(:"#{location}_path")
     |> Path.join(path)
