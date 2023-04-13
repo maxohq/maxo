@@ -72,7 +72,11 @@ defmodule MaxoNew.LibGen.LibPackage do
     |> Map.put(:binding,
       app_name: app,
       app_module: inspect(app_mod),
-      today: Date.utc_today() |> Date.to_string()
+      today: today_str()
     )
+  end
+
+  def today_str do
+    Date.to_string(Date.utc_today())
   end
 end
