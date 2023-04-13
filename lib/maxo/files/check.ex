@@ -16,7 +16,18 @@ defmodule Maxo.Files.Check do
 
     FW.put(pid, "end")
     FW.content(pid) |> IO.puts()
+
+    {:ok, fs} = Virtfs.start_link()
+
+    dumper = fn path, content -> Virtfs.write!(fs, path, content) end
+    FW.set_dumper(pid, dumper)
     FW.dump(pid, "/some/file.ex")
+    FW.dump(pid, "/some/file2.ex")
+    FW.dump(pid, "/some/file3.ex")
+    FW.dump(pid, "/some/file4.ex")
+
+    IO.inspect(Virtfs.tree!(fs, "/"))
+    Virtfs.read!(fs, "/some/file.ex") |> IO.puts()
   end
 
   defp inner_part(pid) do

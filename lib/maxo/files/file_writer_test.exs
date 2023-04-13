@@ -34,4 +34,19 @@ defmodule Maxo.Files.FileWriterTest do
       )
     end
   end
+
+  describe "set_dumper" do
+    test "works with anon functions like: fn(path, content)" do
+      {:ok, fs} = Virtfs.start_link()
+      dumper = fn path, content -> Virtfs.write!(fs, path, content) end
+      {:ok, pid} = FW.start_link()
+      FW.set_dumper(pid, dumper)
+      FW.put(pid, "a file")
+      FW.dump(pid, "/some/file.ex")
+      FW.dump(pid, "/some/file2.ex")
+      auto_assert(["/some", "/some/file.ex", "/some/file2.ex"] <- Virtfs.tree!(fs, "/"))
+      auto_assert("a file" <- Virtfs.read!(fs, "/some/file.ex"))
+      auto_assert("a file" <- Virtfs.read!(fs, "/some/file2.ex"))
+    end
+  end
 end

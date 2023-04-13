@@ -107,7 +107,7 @@ defmodule Maxo.Files.FileWriter do
     apply(mod, fun, [path, _to_content(state)])
   end
 
-  defp _to_dump(%State{dumper: {dumper}} = state, path) when is_function(dumper, 2) do
+  defp _to_dump(%State{dumper: dumper} = state, path) when is_function(dumper, 2) do
     dumper.(path, _to_content(state))
   end
 end
