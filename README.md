@@ -2,7 +2,7 @@
 
 [![Hex.pm](https://img.shields.io/hexpm/v/maxo.svg)](https://hex.pm/packages/maxo)
 [![Docs](https://img.shields.io/badge/hexdocs-docs-8e7ce6.svg)](https://hexdocs.pm/maxo)
-[![CI](https://github.com/mindreframer/maxo/actions/workflows/ci.yml/badge.svg)](https://github.com/mindreframer/maxo/actions/workflows/ci.yml)
+[![CI](https://github.com/maxohq/maxo/actions/workflows/ci.yml/badge.svg)](https://github.com/maxohq/maxo/actions/workflows/ci.yml)
 
 ## Installation
 
