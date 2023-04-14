@@ -22,7 +22,7 @@ defmodule MaxoNew.Generator do
   end
 
   defmacro __before_compile__(env) do
-    root = Path.expand("../../templates", __DIR__)
+    root = Path.expand("../../../templates", __DIR__)
 
     # some
     templates_ast =
