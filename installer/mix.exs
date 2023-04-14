@@ -6,10 +6,16 @@ end
 defmodule MaxoNew.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @github_url "https://github.com/maxohq/maxo/tree/main/installer"
+  @description "MaxoNew bootstraps new Elixir apps / packages with opinionated conventions."
+
   def project do
     [
       app: :maxo_new,
-      version: "0.1.0",
+      version: @version,
+      description: @description,
+      source_url: @github_url,
       elixir: "~> 1.14",
       # reuse build artefacts
       build_path: "../_build",
@@ -19,6 +25,7 @@ defmodule MaxoNew.MixProject do
       test_paths: ["test", "lib"],
       test_pattern: "*_test.exs",
       start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps()
     ]
   end
@@ -27,6 +34,17 @@ defmodule MaxoNew.MixProject do
   def application do
     [
       extra_applications: [:logger, :eex, :crypto]
+    ]
+  end
+
+  defp package do
+    [
+      files: ~w(lib mix.exs README*),
+      licenses: ["MIT"],
+      links: %{
+        "Github" => @github_url,
+        "Changelog" => "https://github.com/maxohq/maxo/blob/main/CHANGELOG.md"
+      }
     ]
   end
 
