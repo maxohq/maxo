@@ -15,6 +15,7 @@ defmodule MaxoNew.LibGen.LibPackage do
       "lib_normal/mix.exs": "mix.exs",
       "lib_normal/README.md": "README.md",
       "lib_normal/CHANGELOG.md": "CHANGELOG.md",
+      "lib_normal/LICENCE": "LICENCE",
       "lib_normal/Makefile": "Makefile",
       "lib_normal/formatter.exs": ".formatter.exs",
       "lib_normal/gitignore": ".gitignore",
@@ -72,11 +73,16 @@ defmodule MaxoNew.LibGen.LibPackage do
     |> Map.put(:binding,
       app_name: app,
       app_module: inspect(app_mod),
-      today: today_str()
+      today: today_str(),
+      year: year_str()
     )
   end
 
   def today_str do
     Date.to_string(Date.utc_today())
+  end
+
+  def year_str do
+    today_str() |> String.slice(0, 4)
   end
 end

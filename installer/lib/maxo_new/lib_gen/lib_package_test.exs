@@ -17,6 +17,7 @@ defmodule MaxoNew.LibGen.LibPackageTest do
         "/maxo_gen/.github/workflows/ci.yml",
         "/maxo_gen/.gitignore",
         "/maxo_gen/CHANGELOG.md",
+        "/maxo_gen/LICENCE",
         "/maxo_gen/Makefile",
         "/maxo_gen/README.md",
         "/maxo_gen/bin",
@@ -81,7 +82,7 @@ defmodule MaxoNew.LibGen.LibPackageTest do
 
         defp package do
           [
-            files: ~w(lib mix.exs README* CHANGELOG*),
+            files: ~w(lib src mix.exs README* CHANGELOG*),
             licenses: ["MIT"],
             links: %{
               "Github" => @github_url,
@@ -118,6 +119,7 @@ defmodule MaxoNew.LibGen.LibPackageTest do
     )
 
     assert Virtfs.read!(p.fs, "/maxo_gen/CHANGELOG.md") =~ LibPackage.today_str()
+    assert Virtfs.read!(p.fs, "/maxo_gen/LICENCE") =~ LibPackage.year_str()
   end
 
   test "with options" do
@@ -133,6 +135,7 @@ defmodule MaxoNew.LibGen.LibPackageTest do
         "/maxo_dbinspect/.github/workflows/ci.yml",
         "/maxo_dbinspect/.gitignore",
         "/maxo_dbinspect/CHANGELOG.md",
+        "/maxo_dbinspect/LICENCE",
         "/maxo_dbinspect/Makefile",
         "/maxo_dbinspect/README.md",
         "/maxo_dbinspect/bin",
@@ -196,7 +199,7 @@ defmodule MaxoNew.LibGen.LibPackageTest do
 
         defp package do
           [
-            files: ~w(lib mix.exs README* CHANGELOG*),
+            files: ~w(lib src mix.exs README* CHANGELOG*),
             licenses: ["MIT"],
             links: %{
               "Github" => @github_url,

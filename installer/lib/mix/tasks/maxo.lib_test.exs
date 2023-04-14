@@ -14,7 +14,7 @@ defmodule Mix.Tasks.Maxo.LibTest do
           app_mod: MyApp,
           app_test: "my_app_test",
           base_path: "my_app",
-          binding: [today: "2023-04-11", app_name: "my_app", app_module: "MyApp"],
+          binding: [year: "2023", today: "2023-04-11", app_name: "my_app", app_module: "MyApp"],
           opts: [],
           project_path: "my_app"
         } <- remove_instable_values(res)
@@ -36,6 +36,7 @@ defmodule Mix.Tasks.Maxo.LibTest do
             "/my_app/.github/workflows/ci.yml",
             "/my_app/.gitignore",
             "/my_app/CHANGELOG.md",
+            "/my_app/LICENCE",
             "/my_app/Makefile",
             "/my_app/README.md",
             "/my_app/bin",
@@ -78,6 +79,10 @@ defmodule Mix.Tasks.Maxo.LibTest do
     |> Keyword.put(
       :today,
       "2023-04-11"
+    )
+    |> Keyword.put(
+      :year,
+      "2023"
     )
   end
 end
