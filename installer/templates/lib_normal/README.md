@@ -27,3 +27,7 @@ end
 ```
 
 The docs can be found at <https://hexdocs.pm/<%= @app_name %>>.
+
+## License
+
+The lib is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
