@@ -16,7 +16,8 @@ defmodule <%= @app_module %>.MixProject do
       test_pattern: "*_test.exs",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      package: package()
+      package: package(), 
+      docs: [extras: ["README.md"]]
     ]
   end
 
@@ -33,7 +34,7 @@ defmodule <%= @app_module %>.MixProject do
 
   defp package do
     [
-      files: ~w(lib src mix.exs README* CHANGELOG*),
+      files: ~w(lib mix.exs README* CHANGELOG*),
       licenses: ["MIT"],
       links: %{
         "Github" => @github_url,
