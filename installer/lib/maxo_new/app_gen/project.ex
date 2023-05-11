@@ -28,8 +28,8 @@ defmodule MaxoNew.Project do
 
     %Project{
       base_path: project_path,
-      app: "#{app}_test",
-      app_test: app,
+      app: app,
+      app_test: "#{app}_test",
       app_mod: app_mod,
       root_app: app,
       root_mod: app_mod,

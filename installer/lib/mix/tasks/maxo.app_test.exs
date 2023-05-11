@@ -12,10 +12,10 @@ defmodule Mix.Tasks.Maxo.AppTest do
 
       auto_assert(
         %MaxoNew.Project{
-          app: "my_app_test",
+          app: "my_app",
           app_mod: MyApp,
           app_path: "my_app",
-          app_test: "my_app",
+          app_test: "my_app_test",
           base_path: "my_app",
           binding: [
             adapter_config: [
@@ -23,8 +23,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 username: "postgres",
                 password: "postgres",
                 hostname: "localhost",
-                database:
-                  {:literal, "\"my_app_test_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
+                database: {:literal, "\"my_app_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
                 pool: Ecto.Adapters.SQL.Sandbox,
                 pool_size: 10
               ],
@@ -32,7 +31,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 username: "postgres",
                 password: "postgres",
                 hostname: "localhost",
-                database: "my_app_test_dev",
+                database: "my_app_dev",
                 stacktrace: true,
                 show_sensitive_data_on_connection_error: true,
                 pool_size: 10
@@ -66,14 +65,14 @@ defmodule Mix.Tasks.Maxo.AppTest do
               "0FFfOkBrw43N3lvFcJLh7e1dweRG9SLbSAkhopP/JdedPgwtpU+Y6JcG2JSsQ/8r",
             secret_key_base_dev:
               "N0TMlBsoiJnRILN4Fbwp7NN5PeuzjaxKrszSmvU+xYoXIarqbIuaqRRI2XKqXsxp",
-            app_name: "my_app_test",
+            app_name: "my_app",
             app_module: "MyApp",
-            root_app_name: "my_app_test",
-            root_app_module: "MyAppTest",
-            lib_web_name: "my_app_test/web",
-            web_app_name: "my_app_test",
-            endpoint_module: "MyAppTest.Web.Endpoint",
-            web_namespace: "MyAppTest.Web",
+            root_app_name: "my_app",
+            root_app_module: "MyApp",
+            lib_web_name: "my_app/web",
+            web_app_name: "my_app",
+            endpoint_module: "MyApp.Web.Endpoint",
+            web_namespace: "MyApp.Web",
             phoenix_dep: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_dep_umbrella_root: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_js_path: "phoenix",
@@ -93,16 +92,16 @@ defmodule Mix.Tasks.Maxo.AppTest do
             adapter_app: :postgrex,
             adapter_module: Ecto.Adapters.Postgres,
             generators: nil,
-            namespaced?: true,
+            namespaced?: false,
             dev: false
           ],
-          lib_web_name: "my_app_test/web",
+          lib_web_name: "my_app/web",
           opts: [],
           project_path: "my_app",
-          root_app: "my_app_test",
-          root_mod: MyAppTest,
-          web_app: "my_app_test",
-          web_namespace: MyAppTest.Web,
+          root_app: "my_app",
+          root_mod: MyApp,
+          web_app: "my_app",
+          web_namespace: MyApp.Web,
           web_path: "my_app"
         } <- remove_instable_values(res)
       )
@@ -113,10 +112,10 @@ defmodule Mix.Tasks.Maxo.AppTest do
 
       auto_assert(
         %MaxoNew.Project{
-          app: "other_app_test",
+          app: "other_app",
           app_mod: OtherApp,
           app_path: "my_app",
-          app_test: "other_app",
+          app_test: "other_app_test",
           base_path: "my_app",
           binding: [
             adapter_config: [
@@ -125,7 +124,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 password: "postgres",
                 hostname: "localhost",
                 database:
-                  {:literal, "\"other_app_test_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
+                  {:literal, "\"other_app_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
                 pool: Ecto.Adapters.SQL.Sandbox,
                 pool_size: 10
               ],
@@ -133,7 +132,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 username: "postgres",
                 password: "postgres",
                 hostname: "localhost",
-                database: "other_app_test_dev",
+                database: "other_app_dev",
                 stacktrace: true,
                 show_sensitive_data_on_connection_error: true,
                 pool_size: 10
@@ -167,14 +166,14 @@ defmodule Mix.Tasks.Maxo.AppTest do
               "0FFfOkBrw43N3lvFcJLh7e1dweRG9SLbSAkhopP/JdedPgwtpU+Y6JcG2JSsQ/8r",
             secret_key_base_dev:
               "N0TMlBsoiJnRILN4Fbwp7NN5PeuzjaxKrszSmvU+xYoXIarqbIuaqRRI2XKqXsxp",
-            app_name: "other_app_test",
+            app_name: "other_app",
             app_module: "OtherApp",
-            root_app_name: "other_app_test",
-            root_app_module: "OtherAppTest",
-            lib_web_name: "other_app_test/web",
-            web_app_name: "other_app_test",
-            endpoint_module: "OtherAppTest.Web.Endpoint",
-            web_namespace: "OtherAppTest.Web",
+            root_app_name: "other_app",
+            root_app_module: "OtherApp",
+            lib_web_name: "other_app/web",
+            web_app_name: "other_app",
+            endpoint_module: "OtherApp.Web.Endpoint",
+            web_namespace: "OtherApp.Web",
             phoenix_dep: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_dep_umbrella_root: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_js_path: "phoenix",
@@ -194,16 +193,16 @@ defmodule Mix.Tasks.Maxo.AppTest do
             adapter_app: :postgrex,
             adapter_module: Ecto.Adapters.Postgres,
             generators: nil,
-            namespaced?: true,
+            namespaced?: false,
             dev: false
           ],
-          lib_web_name: "other_app_test/web",
+          lib_web_name: "other_app/web",
           opts: [app: "other_app"],
           project_path: "my_app",
-          root_app: "other_app_test",
-          root_mod: OtherAppTest,
-          web_app: "other_app_test",
-          web_namespace: OtherAppTest.Web,
+          root_app: "other_app",
+          root_mod: OtherApp,
+          web_app: "other_app",
+          web_namespace: OtherApp.Web,
           web_path: "my_app"
         } <- remove_instable_values(res)
       )
@@ -212,10 +211,10 @@ defmodule Mix.Tasks.Maxo.AppTest do
 
       auto_assert(
         %MaxoNew.Project{
-          app: "BIGAPP_test",
+          app: "BIGAPP",
           app_mod: BIGAPP,
           app_path: "my_app",
-          app_test: "BIGAPP",
+          app_test: "BIGAPP_test",
           base_path: "my_app",
           binding: [
             adapter_config: [
@@ -223,8 +222,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 username: "postgres",
                 password: "postgres",
                 hostname: "localhost",
-                database:
-                  {:literal, "\"bigapp_test_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
+                database: {:literal, "\"bigapp_test\#{System.get_env(\"MIX_TEST_PARTITION\")}\""},
                 pool: Ecto.Adapters.SQL.Sandbox,
                 pool_size: 10
               ],
@@ -232,7 +230,7 @@ defmodule Mix.Tasks.Maxo.AppTest do
                 username: "postgres",
                 password: "postgres",
                 hostname: "localhost",
-                database: "bigapp_test_dev",
+                database: "bigapp_dev",
                 stacktrace: true,
                 show_sensitive_data_on_connection_error: true,
                 pool_size: 10
@@ -266,14 +264,14 @@ defmodule Mix.Tasks.Maxo.AppTest do
               "0FFfOkBrw43N3lvFcJLh7e1dweRG9SLbSAkhopP/JdedPgwtpU+Y6JcG2JSsQ/8r",
             secret_key_base_dev:
               "N0TMlBsoiJnRILN4Fbwp7NN5PeuzjaxKrszSmvU+xYoXIarqbIuaqRRI2XKqXsxp",
-            app_name: "BIGAPP_test",
+            app_name: "BIGAPP",
             app_module: "BIGAPP",
-            root_app_name: "BIGAPP_test",
-            root_app_module: "BIGAPPTest",
-            lib_web_name: "BIGAPP_test/web",
-            web_app_name: "BIGAPP_test",
-            endpoint_module: "BIGAPPTest.Web.Endpoint",
-            web_namespace: "BIGAPPTest.Web",
+            root_app_name: "BIGAPP",
+            root_app_module: "BIGAPP",
+            lib_web_name: "BIGAPP/web",
+            web_app_name: "BIGAPP",
+            endpoint_module: "BIGAPP.Web.Endpoint",
+            web_namespace: "BIGAPP.Web",
             phoenix_dep: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_dep_umbrella_root: "{:phoenix, \"~> 1.7.2\"}",
             phoenix_js_path: "phoenix",
@@ -293,16 +291,16 @@ defmodule Mix.Tasks.Maxo.AppTest do
             adapter_app: :postgrex,
             adapter_module: Ecto.Adapters.Postgres,
             generators: nil,
-            namespaced?: true,
+            namespaced?: false,
             dev: false
           ],
-          lib_web_name: "BIGAPP_test/web",
+          lib_web_name: "BIGAPP/web",
           opts: [app: "BIGAPP"],
           project_path: "my_app",
-          root_app: "BIGAPP_test",
-          root_mod: BIGAPPTest,
-          web_app: "BIGAPP_test",
-          web_namespace: BIGAPPTest.Web,
+          root_app: "BIGAPP",
+          root_mod: BIGAPP,
+          web_app: "BIGAPP",
+          web_namespace: BIGAPP.Web,
           web_path: "my_app"
         } <- remove_instable_values(res)
       )
@@ -336,7 +334,25 @@ defmodule Mix.Tasks.Maxo.AppTest do
       ExUnit.CaptureIO.capture_io(fn ->
         res = MaxoApp.unit_test_args("my_app")
 
-        auto_assert([] <- Virtfs.tree!(res.fs, "/my_app/lib/my_app/web"))
+        auto_assert(
+          [
+            "/my_app/lib/my_app/web/components/core_components.ex",
+            "/my_app/lib/my_app/web/router.ex",
+            "/my_app/lib/my_app/web/controllers/error_html.ex",
+            "/my_app/lib/my_app/web/components/layouts.ex",
+            "/my_app/lib/my_app/web/controllers/error_json_test.exs",
+            "/my_app/lib/my_app/web/controllers/error_json.ex",
+            "/my_app/lib/my_app/web/controllers",
+            "/my_app/lib/my_app/web/components/layouts",
+            "/my_app/lib/my_app/web/components/layouts/app.html.heex",
+            "/my_app/lib/my_app/web/components",
+            "/my_app/lib/my_app/web/components/layouts/root.html.heex",
+            "/my_app/lib/my_app/web/controllers/error_html_test.exs",
+            "/my_app/lib/my_app/web/gettext.ex",
+            "/my_app/lib/my_app/web/telemetry.ex",
+            "/my_app/lib/my_app/web/endpoint.ex"
+          ] <- Virtfs.tree!(res.fs, "/my_app/lib/my_app/web")
+        )
       end)
 
       # IO.inspect(res, limit: :infinity)
